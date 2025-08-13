@@ -14,7 +14,7 @@ Power BI + Excel Dashboard Project | 5 Tesla Models | State-wise Sales Insights
 
 ---
 
-### 📌 Project Overview  
+### Project Overview  
 This project explores **state-wise stock sales data** for used Tesla vehicles across the U.S., leveraging **Power BI dashboards** to compare model performance, price trends, mileage, and accident history.
 
 The goal is to extract insights into:
@@ -31,7 +31,7 @@ For the five most common Tesla models:
 
 ---
 
-### 🛠️ Tools & Technologies  
+### Tools & Technologies  
 - Microsoft Power BI (for dashboard creation)  
 - Excel (data formatting & pre-processing)  
 - Power Query (ETL in Power BI)  
@@ -40,7 +40,7 @@ For the five most common Tesla models:
 
 ---
 
-### 📊 Excel for Data Formatting & Pre-Processing  
+### Excel for Data Formatting & Pre-Processing  
 
 - Cleaned missing values and duplicates  
 - Formatted numeric fields (e.g., price, mileage, EMI)  
@@ -54,7 +54,7 @@ For the five most common Tesla models:
 
 
 
-### 📂 Dataset Breakdown  
+### Dataset Breakdown  
 The dataset used for this analysis includes:
 - Tesla model name  
 - Average price (USD)  
@@ -71,7 +71,7 @@ Each vehicle record was filtered and grouped to compute KPIs across states.
 
 ---
 
-### ⚙️ Data Transformation  
+### Data Transformation  
 Using **Power Query** and **DAX**, the data was transformed to calculate:  
 - Average price per model/state
 ```
@@ -174,7 +174,7 @@ Visuals were color-coded by driver assist systems and filtered by model.
 
 ---
 
-### 📊 Power BI Dashboard  
+### Power BI Dashboard  
 Each Tesla model has a dedicated dashboard featuring the following key visuals:
 - Average Price  
 - Median Odometer  
@@ -198,7 +198,7 @@ Each Tesla model has a dedicated dashboard featuring the following key visuals:
 
 ---
 
-### 📈 Insights & Findings  
+### Insights & Findings  
 1. **Model Y** is the most affordable option at ~$33.9K with the lowest EMI ($529.37).  
 2. **Model X** has the highest average price and EMI, making it the most premium used Tesla option.  
 3. **Model 3** is the most balanced in terms of price vs. mileage.  
@@ -208,7 +208,7 @@ Each Tesla model has a dedicated dashboard featuring the following key visuals:
 
 ---
 
-### 🧭 Recommendations  
+### Recommendations  
 
 #### 1. 🎯 Target High-Volume States  
 Focus marketing and resale efforts in states like **NY, OH, NC, VA**, which show high vehicle turnover and mileage demand.
@@ -225,7 +225,7 @@ As newer models, their datasets will grow. Monitoring pricing trends can help fo
 
 ---
 
-### 🔮 Future Work
+### Future Work
 * Integrate live market data (Tesla API, vehicle resale sites)
 * Include model year and battery degradation metrics
 * Predict resale value using regression models (Python + ML)
