@@ -226,22 +226,6 @@ As newer models, their datasets will grow. Monitoring pricing trends can help fo
 
 ---
 
-### 🗂️ Repository Structure  
-```plaintext
-📁 tesla-stock-sales-dashboard/
-├── data/
-│   └── tesla_sales_data.xlsx
-├── dashboards/
-│   ├── model_3_dashboard.pbix
-│   ├── model_y_dashboard.pbix
-│   ├── model_s_dashboard.pbix
-│   ├── model_x_dashboard.pbix
-│   └── cybertruck_dashboard.pbix
-├── assets/
-│   └── images/
-├── README.md
-```
-
 ### 🔮 Future Work
 * Integrate live market data (Tesla API, vehicle resale sites)
 * Include model year and battery degradation metrics
