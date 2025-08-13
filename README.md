@@ -4,6 +4,7 @@ Power BI + Excel Dashboard Project | 5 Tesla Models | State-wise Sales Insights
 ## 📚 Table of Contents  
 * [Project Overview](#project-overview)  
 * [Tools & Technologies](#tools--technologies)  
+* [Excel for Data Formatting & Pre-Processing](#excel-for-data-formatting--pre-processing)  
 * [Dataset Breakdown](#dataset-breakdown)  
 * [Data Transformation](#data-transformation)  
 * [Power BI Dashboard](#power-bi-dashboard)  
@@ -73,11 +74,102 @@ Each vehicle record was filtered and grouped to compute KPIs across states.
 
 ### ⚙️ Data Transformation  
 Using **Power Query** and **DAX**, the data was transformed to calculate:  
-- Average price per model/state  
-- Median mileage (odometer)  
-- EMI estimates  
-- Accident percentage  
-- Average price per Driver Assist System (DAS)  
+- Average price per model/state
+```
+VAR selected = [SelectedModel]
+RETURN
+IF(
+    selected = "ALL",
+    AVERAGE('Tesla Stock Dataset'[price]),
+    CALCULATE(
+        AVERAGE('Tesla Stock Dataset'[price]),
+        'Tesla Stock Dataset'[model] = selected
+    )
+)
+
+```
+- Median mileage (odometer)
+```
+MedianOdometer = 
+VAR selected = [SelectedModel]
+RETURN
+IF(
+    selected = "ALL",
+    MEDIAN('Tesla Stock Dataset'[odometer]),
+    CALCULATE(
+        MEDIAN('Tesla Stock Dataset'[odometer]),
+        'Tesla Stock Dataset'[model] = selected
+    )
+)
+
+```
+- EMI estimates
+```
+AverageEMI = 
+VAR selected = [SelectedModel]
+RETURN
+IF(
+    selected = "ALL",
+    AVERAGE('Tesla Stock Dataset'[EMI]),
+    CALCULATE(
+        AVERAGE('Tesla Stock Dataset'[EMI]),
+        'Tesla Stock Dataset'[model] = selected
+    )
+)
+```
+- Accident percentage
+```
+PercentWithAccident = 
+VAR selected = [SelectedModel]
+RETURN
+IF(
+    selected = "ALL",
+    DIVIDE(
+        CALCULATE(COUNTROWS('Tesla Stock Dataset'), 'Tesla Stock Dataset'[accident_history] <> "No Accidents"),
+        COUNTROWS('Tesla Stock Dataset'),
+        0
+    ),
+    DIVIDE(
+        CALCULATE(
+            COUNTROWS('Tesla Stock Dataset'),
+            'Tesla Stock Dataset'[model] = selected,
+            'Tesla Stock Dataset'[accident_history] <> "No Accidents"
+        ),
+        CALCULATE(
+            COUNTROWS('Tesla Stock Dataset'),
+            'Tesla Stock Dataset'[model] = selected
+        ),
+        0
+    )
+)
+
+```
+- Percent With No Accident
+```
+PercentNoAccident = 
+VAR selected = [SelectedModel]
+RETURN
+IF(
+    selected = "ALL",
+    DIVIDE(
+        CALCULATE(COUNTROWS('Tesla Stock Dataset'), 'Tesla Stock Dataset'[accident_history] = "No Accidents"),
+        COUNTROWS('Tesla Stock Dataset'),
+        0
+    ),
+    DIVIDE(
+        CALCULATE(
+            COUNTROWS('Tesla Stock Dataset'),
+            'Tesla Stock Dataset'[model] = selected,
+            'Tesla Stock Dataset'[accident_history] = "No Accidents"
+        ),
+        CALCULATE(
+            COUNTROWS('Tesla Stock Dataset'),
+            'Tesla Stock Dataset'[model] = selected
+        ),
+        0
+    )
+)
+``` 
 
 Visuals were color-coded by driver assist systems and filtered by model.
 
@@ -150,7 +242,7 @@ As newer models, their datasets will grow. Monitoring pricing trends can help fo
 ├── README.md
 ```
 
-###🔮 Future Work
+### 🔮 Future Work
 * Integrate live market data (Tesla API, vehicle resale sites)
 * Include model year and battery degradation metrics
 * Predict resale value using regression models (Python + ML)
